@@ -1,0 +1,19 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/*.js": false,
+        "**/*.js.map": true
+    },
+    "search.exclude": {
+        "nativescript/platforms": true,
+        "nativescript/src/app": true,
+        "nativescript/node_modules": true,
+        "nativescript/hooks": true,
+        "**/*.js": true,
+        "**/*.js.map": true
+    }
+}
