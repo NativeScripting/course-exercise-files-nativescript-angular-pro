@@ -9,10 +9,9 @@
         "**/*.js.map": true
     },
     "search.exclude": {
-        "nativescript/platforms": true,
-        "nativescript/src/app": true,
-        "nativescript/node_modules": true,
-        "nativescript/hooks": true,
+        "platforms": true,
+        "node_modules": true,
+        "hooks": true,
         "**/*.js": true,
         "**/*.js.map": true
     }
