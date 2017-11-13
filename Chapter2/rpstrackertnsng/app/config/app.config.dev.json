@@ -1,0 +1,6 @@
+{
+    "appType": "Ns",
+    "apiEndpoint": "http://192.168.1.202:8080/api",
+    "loggingEnabled": true,
+    "loggingLevel": "Debug"
+}
