@@ -5,6 +5,7 @@ import { Http } from '@angular/http';
 import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 import { NativeScriptHttpModule } from 'nativescript-angular/http';
 
+import { AppConfigModule } from './config/app-config.module';
 import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -16,6 +17,8 @@ import { createTranslationLoader } from './utils';
 import './utils/console-color';
 import './rxjs-imports';
 
+
+
 @NgModule({
     bootstrap: [
         AppComponent
@@ -23,6 +26,7 @@ import './rxjs-imports';
     imports: [
         NativeScriptModule,
         NativeScriptHttpModule,
+        AppConfigModule,
         AppRoutingModule,
         CoreModule,
 

@@ -1,11 +1,16 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 
 
+import { SERVICES } from './services';
+
+
 @NgModule({
     imports: [],
     exports: [],
     declarations: [],
-    providers: [],
+    providers: [
+        ...SERVICES
+    ],
 })
 export class CoreModule {
     constructor(
