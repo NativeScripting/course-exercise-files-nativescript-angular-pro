@@ -1,0 +1,11 @@
+@import url('~/platform.css');
+
+
+Page {
+    background-color: purple;
+}
+
+ActionBar {
+    background-color: purple;
+    color: white;
+}

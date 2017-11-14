@@ -1,19 +1,14 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { Http } from '@angular/http';
-
-
 import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
-import { NativeScriptHttpModule } from 'nativescript-angular/http';
-
 import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 
-
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-
-import { createTranslationLoader } from './utils';
 import './rxjs-imports';
+import { setStatusBarColors } from './util/status-bar-util';
+
+setStatusBarColors();
+
 
 @NgModule({
     bootstrap: [
@@ -21,17 +16,8 @@ import './rxjs-imports';
     ],
     imports: [
         NativeScriptModule,
-        NativeScriptHttpModule,
         AppRoutingModule,
-        CoreModule,
-
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: (createTranslationLoader),
-                deps: [Http]
-            }
-        })
+        CoreModule
     ],
     declarations: [
         AppComponent
