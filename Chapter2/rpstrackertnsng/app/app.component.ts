@@ -19,6 +19,10 @@ export class AppComponent {
         translateService.setDefaultLang('en');
         translateService.use(device.language);
 
+        console.logColor('RPS message log');
+        console.warnColor('RPS message warning');
+        console.errorColor('RPS message error');
+
     }
 
 }

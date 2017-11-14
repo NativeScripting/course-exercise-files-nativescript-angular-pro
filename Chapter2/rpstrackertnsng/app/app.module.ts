@@ -13,6 +13,7 @@ import { CoreModule } from './core/core.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 import { createTranslationLoader } from './utils';
+import './utils/console-color';
 import './rxjs-imports';
 
 @NgModule({
