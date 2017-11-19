@@ -17,6 +17,9 @@ export class AppComponent {
         private loggerService: LoggerService
     ) {
         console.log('app component constructor');
+        page.actionBarHidden = true;
+        page.backgroundSpanUnderStatusBar = true;
+
         this.myAppText = device.language;
         translateService.setDefaultLang('en');
         translateService.use(device.language);

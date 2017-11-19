@@ -1,5 +1,6 @@
 import * as app from 'application';
 import { setNativeEvents } from './app-events-native';
+import { setStatusBarColors } from '../utils';
 
 export const setAppEvents = () => {
 
@@ -16,6 +17,7 @@ export const setAppEvents = () => {
     });
     app.on(app.resumeEvent, function (args: app.ApplicationEventData) {
         console.logNativeScript(args.eventName);
+        setStatusBarColors();
     });
     app.on(app.exitEvent, function (args: app.ApplicationEventData) {
         console.logNativeScript(args.eventName);
