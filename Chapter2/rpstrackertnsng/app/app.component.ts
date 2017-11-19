@@ -16,19 +16,10 @@ export class AppComponent {
         private translateService: TranslateService,
         private loggerService: LoggerService
     ) {
+        console.log('app component constructor');
         this.myAppText = device.language;
-
         translateService.setDefaultLang('en');
         translateService.use(device.language);
-
-        /*
-        console.logColor('RPS message log');
-        console.warnColor('RPS message warning');
-        console.errorColor('RPS message error');
-        */
-        loggerService.log('RPS message log');
-        loggerService.warn('RPS message warning');
-        loggerService.error('RPS message error');
     }
 
 }

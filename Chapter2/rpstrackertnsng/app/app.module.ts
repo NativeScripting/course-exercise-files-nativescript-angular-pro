@@ -17,7 +17,7 @@ import { createTranslationLoader } from './utils';
 import './utils/console-color';
 import './rxjs-imports';
 
-
+console.log('App Module code');
 
 @NgModule({
     bootstrap: [
@@ -48,4 +48,8 @@ import './rxjs-imports';
         NO_ERRORS_SCHEMA
     ]
 })
-export class AppModule { }
+export class AppModule {
+    constructor() {
+        console.log('App Module constructor');
+    }
+}

@@ -1,7 +1,7 @@
 import {
     AuthService,
     LoggerService
-} from '.';
+} from './';
 
 export * from './auth.service';
 export * from './logger.service';
