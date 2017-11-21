@@ -25,4 +25,8 @@ export class AppComponent {
         translateService.use(device.language);
     }
 
+    public throwError(args) {
+        throw new Error('Error from component');
+    }
+
 }

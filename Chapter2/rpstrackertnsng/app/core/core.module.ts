@@ -1,7 +1,8 @@
-import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { NgModule, Optional, SkipSelf, ErrorHandler } from '@angular/core';
 
 
 import { SERVICES } from './services';
+import { RpsErrorHandler } from './helpers';
 
 
 @NgModule({
@@ -9,6 +10,7 @@ import { SERVICES } from './services';
     exports: [],
     declarations: [],
     providers: [
+        { provide: ErrorHandler, useClass: RpsErrorHandler },
         ...SERVICES
     ],
 })
