@@ -1,5 +1,6 @@
-import { PtObjectBase } from './pt-object-base.model';
-import { GenderEnum } from './enums/gender.enum';
+import { PtObjectBase } from './';
+import { GenderEnum } from './enums';
+
 
 export interface PtUser extends PtObjectBase {
     fullName: string;
