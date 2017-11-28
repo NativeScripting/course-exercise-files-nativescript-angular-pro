@@ -1,0 +1,5 @@
+<ListView [items]="items" (itemTap)="listItemTap($event)" separatorColor="#97a879">
+    <ng-template let-item="item" let-i="index">
+        <pt-list-item [item]="item"></pt-list-item>
+    </ng-template>
+</ListView>
