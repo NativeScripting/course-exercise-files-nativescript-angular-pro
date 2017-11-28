@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { LoggerService } from './core/services';
 import { Store } from './core/state/app-store';
 import { PtItem } from './core/models/domain';
+import { BacklogService } from './modules/backlog/services/backlog.service';
 
 @Component({
     selector: 'ns-app',
@@ -18,7 +19,8 @@ export class AppComponent {
         private page: Page,
         private store: Store,
         private translateService: TranslateService,
-        private loggerService: LoggerService
+        private loggerService: LoggerService,
+        private backlogService: BacklogService
     ) {
         console.log('app component constructor');
         page.actionBarHidden = true;
@@ -26,6 +28,8 @@ export class AppComponent {
 
         translateService.setDefaultLang('en');
         translateService.use(device.language);
+
+        this.backlogService.fetchItems();
     }
 
     public throwError(args) {
