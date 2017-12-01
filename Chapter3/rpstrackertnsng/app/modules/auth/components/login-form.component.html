@@ -1,0 +1,18 @@
+<Label class="title" [text]="'modules.auth.pages.auth.login' | translate">
+</Label>
+
+<StackLayout class="auth-form">
+    <Label text="email" class="h2"></Label>
+    <TextField hint="email..." [(ngModel)]="email">
+    </TextField>
+
+
+    <Label text="password" class="h2"></Label>
+    <TextField hint="password..." [(ngModel)]="password" secure="true">
+    </TextField>
+
+
+    <Button [text]="'modules.auth.pages.auth.login' | translate" (tap)="onLoginTap(true)">
+    </Button>
+
+</StackLayout>

@@ -9,6 +9,7 @@ import { AppConfigModule } from './config/app-config.module';
 import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
+import { AuthModule } from './modules/auth/auth.module';
 import { BacklogModule } from './modules/backlog/backlog.module';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -16,6 +17,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { createTranslationLoader } from './utils';
 import './utils/console-color';
 import './rxjs-imports';
+
 
 
 console.log('App Module code');
@@ -30,6 +32,7 @@ console.log('App Module code');
         AppConfigModule,
         AppRoutingModule,
         CoreModule,
+        AuthModule,
         BacklogModule,
 
         TranslateModule.forRoot({

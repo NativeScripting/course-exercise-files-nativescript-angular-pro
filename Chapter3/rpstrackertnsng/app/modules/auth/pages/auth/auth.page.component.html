@@ -1,0 +1,11 @@
+<StackLayout>
+
+    <pt-login-form *ngIf="!loggedIn" (loginInitiated)="onLogin($event)"></pt-login-form>
+
+    <StackLayout *ngIf="loggedIn">
+        <Label [text]="'logged in as ' + loggedInName"></Label>
+        <Button text="Logout" (tap)="logout($event)"></Button>
+    </StackLayout>
+
+
+</StackLayout>
