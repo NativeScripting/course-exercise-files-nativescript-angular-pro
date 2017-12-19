@@ -1,1 +1,10 @@
-<pt-auth-page></pt-auth-page>
+<StackLayout>
+
+    <StackLayout orientation="horizontal">
+        <Button text="Auth" [nsRouterLink]="['/auth']" pageTransition="flip" clearHistory="true"></Button>
+        <Button text="Backlog" [nsRouterLink]="['/backlog']" pageTransition="flip" clearHistory="true"></Button>
+    </StackLayout>
+
+
+    <page-router-outlet></page-router-outlet>
+</StackLayout>
