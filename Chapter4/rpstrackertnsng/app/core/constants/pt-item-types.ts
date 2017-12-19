@@ -32,25 +32,6 @@ export class ItemType {
         return [ItemType.Bug, ItemType.Pbi, ItemType.Chore, ItemType.Impediment];
     }
 
-    public get PtItemType() {
-        return this.ptItemType;
-    }
-
-    private constructor(private ptItemType: PtItemType) { }
-
-
-    public static fromString(typeStr: string): ItemType {
-        return ItemType.List.find((i) => i.PtItemType === typeStr);
-    }
-
-    public getPtTypeImage(): string {
-        return ItemType.imageResFromType(this.PtItemType);
-    }
-
-    public getIndicatorClass(): string {
-        return ItemType.indicatorClassFromType(this.PtItemType);
-    }
-
     public static indicatorClassFromType(ptItemType: PtItemType): string {
         switch (ptItemType) {
             case PT_ITEM_TYPE_PBI:
@@ -79,5 +60,24 @@ export class ItemType {
             default:
                 return '';
         }
+    }
+
+    public get PtItemType() {
+        return this.ptItemType;
+    }
+
+    private constructor(private ptItemType: PtItemType) { }
+
+
+    public static fromString(typeStr: string): ItemType {
+        return ItemType.List.find((i) => i.PtItemType === typeStr);
+    }
+
+    public getPtTypeImage(): string {
+        return ItemType.imageResFromType(this.PtItemType);
+    }
+
+    public getIndicatorClass(): string {
+        return ItemType.indicatorClassFromType(this.PtItemType);
     }
 }
