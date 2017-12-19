@@ -1,4 +1,4 @@
-<GridLayout class="backlog-container" rows="*, 60">
+<GridLayout class="backlog-container" rows="*,60, 60">
 
     <GridLayout row="0" class="list-container">
         <pt-list [items]="items$ | async" (listItemSelected)="selectListItem($event)"></pt-list>
@@ -7,5 +7,7 @@
     <StackLayout row="1" class="btn-add-wrapper">
         <Button text="Add" class="btn-add" (tap)="onAddTap($event)"></Button>
     </StackLayout>
+
+    <Button row="2" text="Auth" [nsRouterLink]="['/auth']"></Button>
 
 </GridLayout>

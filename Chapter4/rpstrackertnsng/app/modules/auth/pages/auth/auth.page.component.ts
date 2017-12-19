@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { Page } from 'ui/page';
 
-import { AuthService } from '../../../../core/services';
+import { AuthService, NavigationService } from '../../../../core/services';
 import { PtLoginModel, PtUser } from '../../../../core/models/domain';
 import { RouterExtensions } from 'nativescript-angular/router/router-extensions';
 
@@ -20,7 +20,8 @@ export class AuthPageComponent {
 
     constructor(
         private page: Page,
-        private authService: AuthService
+        private authService: AuthService,
+        private navigationService: NavigationService
     ) {
         this.page.actionBarHidden = true;
         this.page.backgroundSpanUnderStatusBar = true;
@@ -34,13 +35,13 @@ export class AuthPageComponent {
                 if (user) {
                     this.loggedInName = user.fullName;
                 }
-                // TODO: navigate to the backlog
+                this.navigationService.navigate(['/backlog'], { clearHistory: true });
             });
     }
 
     public logout() {
         this.authService.logout();
         this.loggedIn = false;
-        // TODO: navigate to the login page
+        this.navigationService.navigate(['/auth'], { clearHistory: true });
     }
 }
