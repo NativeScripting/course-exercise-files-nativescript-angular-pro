@@ -1,0 +1,7 @@
+<ActionBar title="Item">
+    <NavigationButton text="Back" android.systemIcon="ic_menu_back" (tap)="onNavBackTap()"></NavigationButton>
+</ActionBar>
+
+<StackLayout class="pt-item-detail-header">
+    <Label [text]="(currentSelectedItem$ | async)?.title" class="pt-item-detail-header-title"></Label>
+</StackLayout>

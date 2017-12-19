@@ -1,0 +1,54 @@
+<StackLayout>
+
+
+    <StackLayout class="input-field with-validation">
+        <GridLayout columns="*, 25" class="login-field-wrapper">
+            <TextField #fullNameModel="ngModel" class="login-field" hint="Name" [(ngModel)]="fullName" col="0" required>
+            </TextField>
+
+        </GridLayout>
+
+        <StackLayout *ngIf="fullNameModel.errors && fullNameModel.touched">
+            <Label *ngIf="fullNameModel.errors.required" text="full name is missing" class="validation">
+            </Label>
+        </StackLayout>
+    </StackLayout>
+
+
+    <StackLayout class="input-field with-validation">
+        <GridLayout columns="*, 25" class="login-field-wrapper">
+            <TextField #emailModel="ngModel" class="login-field" hint="Email" [(ngModel)]="email" col="0" required email>
+            </TextField>
+
+        </GridLayout>
+
+        <StackLayout *ngIf="emailModel.errors && emailModel.touched">
+            <Label *ngIf="emailModel.errors.required" text="email is missing" class="validation">
+            </Label>
+            <Label *ngIf="emailModel.errors.email && !emailModel.errors.required" text="the email is not in the correct format" class="validation">
+            </Label>
+        </StackLayout>
+    </StackLayout>
+
+    <StackLayout class="input-field with-validation">
+        <GridLayout columns="*, 25" class="login-field-wrapper">
+            <TextField #passwordModel="ngModel" class="login-field" hint="Password" [(ngModel)]="password" secure="true" col="0" required>
+            </TextField>
+
+        </GridLayout>
+
+        <StackLayout>
+            <StackLayout *ngIf="passwordModel.errors && passwordModel.touched">
+                <Label *ngIf="passwordModel.errors.required" text="password is required" class="validation">
+                </Label>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+
+
+    <Button [text]="'modules.auth.pages.auth.register' | translate" (tap)="onRegisterTap(emailModel.valid && passwordModel.valid)"
+        class="btn-login" [class.btn-outline]="!(emailModel.valid && passwordModel.valid)" [class.btn-primary]="emailModel.valid && passwordModel.valid"
+        [isEnabled]="fullNameModel.valid && emailModel.valid && passwordModel.valid" [isUserInteractionEnabled]="fullNameModel.valid && emailModel.valid && passwordModel.valid">
+    </Button>
+
+</StackLayout>
