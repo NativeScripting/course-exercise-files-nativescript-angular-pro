@@ -7,11 +7,13 @@ import { BacklogService } from './services/backlog.service';
 import { BacklogRepository } from './repositories/backlog.repository';
 import { PAGES } from './pages';
 import { COMPONENTS } from './components';
+import { BacklogRoutingModule } from './backlog.routing';
 
 @NgModule({
     imports: [
         NativeScriptModule,
-        NativeScriptRouterModule
+        NativeScriptRouterModule,
+        BacklogRoutingModule
     ],
     exports: [
         ...PAGES
