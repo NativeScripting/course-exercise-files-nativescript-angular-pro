@@ -1,7 +1,10 @@
-import { AuthPageComponent } from './auth/auth.page.component';
+import { LoginPageComponent } from './login/login.page.component';
+import { RegisterPageComponent } from './register/register.page.component';
 
 export const PAGES = [
-    AuthPageComponent
+    LoginPageComponent,
+    RegisterPageComponent
 ];
 
-export * from './auth/auth.page.component';
+export * from './login/login.page.component';
+export * from './register/register.page.component';

@@ -9,7 +9,7 @@ import { Store } from '../state/app-store';
 import { StorageService } from './storage.service';
 import { ServerErrorHandlerService } from './server-error-handler.service';
 import { AuthTokenService } from './auth-token.service';
-import { PtUser, PtLoginModel, PtAuthToken } from '../models/domain';
+import { PtUser, PtLoginModel, PtAuthToken, PtRegisterModel } from '../models/domain';
 
 const CURRENT_USER_KEY = 'CURRENT_USER_KEY';
 
@@ -17,6 +17,7 @@ const CURRENT_USER_KEY = 'CURRENT_USER_KEY';
 export class AuthService {
 
     private get loginUrl() { return `${this.config.apiEndpoint}/auth`; }
+    private get registerUrl() { return `${this.config.apiEndpoint}/register`; }
 
     public get currentUser(): PtUser {
         const user = this.storageService.getItem<PtUser>(CURRENT_USER_KEY);
@@ -52,6 +53,12 @@ export class AuthService {
         return this.store.select<PtUser>('currentUser');
     }
 
+    public register(registerModel: PtRegisterModel): Observable<PtUser> {
+        this.registerInternal(registerModel)
+            .subscribe();
+        return this.store.select<PtUser>('currentUser');
+    }
+
     public logout() {
         this.authTokenService.token = { access_token: '', dateExpires: new Date() };
         this.storageService.setItem(CURRENT_USER_KEY, '');
@@ -72,4 +79,20 @@ export class AuthService {
             })
             .catch(this.errorHandlerService.handleHttpError);
     }
+
+    private registerInternal(registerModel: PtRegisterModel) {
+        const headers = new Headers();
+
+        return this.http.post(
+            this.registerUrl,
+            { registerModel: registerModel }
+        )
+            .map(response => response.json())
+            .do((data: { authToken: PtAuthToken, user: PtUser }) => {
+                this.authTokenService.token = data.authToken;
+                this.currentUser = data.user;
+            })
+            .catch(this.errorHandlerService.handleHttpError);
+    }
+
 }
