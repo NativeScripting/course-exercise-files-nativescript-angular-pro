@@ -5,7 +5,7 @@ import { AuthPageComponent } from './modules/auth/pages';
 
 
 const routes: Routes = [
-    { path: '', redirectTo: '/auth', pathMatch: 'full' }
+    { path: '', redirectTo: '/backlog', pathMatch: 'full' }
 ];
 
 @NgModule({

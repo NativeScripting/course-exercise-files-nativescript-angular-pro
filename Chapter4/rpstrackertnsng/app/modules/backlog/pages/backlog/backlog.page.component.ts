@@ -4,6 +4,7 @@ import { BacklogService } from '../../services/backlog.service';
 import { Store } from '../../../../core/state/app-store';
 import { PtItem } from '../../../../core/models/domain';
 import { NavigationService } from '../../../../core/services/navigation.service';
+import { AuthService } from '../../../../core/services';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class BacklogPageComponent implements OnInit {
     public items$ = this.store.select<PtItem[]>('backlogItems');
 
     constructor(
+        private authService: AuthService,
         private navigationService: NavigationService,
         private backlogService: BacklogService,
         private store: Store
@@ -30,6 +32,11 @@ export class BacklogPageComponent implements OnInit {
     public selectListItem(item: PtItem) {
         // navigate to detail page
         this.navigationService.navigate(['/detail', item.id]);
+    }
+
+    public onLogoutTap() {
+        this.authService.logout();
+        this.navigationService.navigate(['/auth']);
     }
 
     public onAddTap(args) {
