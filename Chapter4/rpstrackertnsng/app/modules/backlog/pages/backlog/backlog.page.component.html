@@ -1,4 +1,4 @@
-<GridLayout class="backlog-container" rows="*,60, 60">
+<GridLayout class="backlog-container" rows="*,60, 60, 60">
 
     <GridLayout row="0" class="list-container">
         <pt-list [items]="items$ | async" (listItemSelected)="selectListItem($event)"></pt-list>
@@ -9,5 +9,9 @@
     </StackLayout>
 
     <Button row="2" text="Logout" (tap)="onLogoutTap()"></Button>
+
+    <StackLayout row="3">
+        <pt-menu></pt-menu>
+    </StackLayout>
 
 </GridLayout>

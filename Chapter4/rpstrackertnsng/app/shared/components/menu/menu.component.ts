@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { PresetType } from '../../models/ui/types/presets';
+import { NavigationService } from '../../../core/services';
 
 @Component({
     moduleId: module.id,
     selector: 'pt-menu',
-    templateUrl: 'menu.component.html'
+    templateUrl: 'menu.component.html',
+    styleUrls: ['menu.component.css']
 })
-
-export class MenuComponent implements OnInit {
-    constructor() { }
-
-    ngOnInit() { }
+export class MenuComponent {
+    constructor(
+        private navigationService: NavigationService
+    ) { }
 
     public onSelectPresetTap(preset: PresetType) {
         // TODO: navigate to the preset URL

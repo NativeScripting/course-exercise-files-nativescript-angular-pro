@@ -8,12 +8,14 @@ import { BacklogRepository } from './repositories/backlog.repository';
 import { PAGES } from './pages';
 import { COMPONENTS } from './components';
 import { BacklogRoutingModule } from './backlog.routing';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
     imports: [
         NativeScriptModule,
         NativeScriptRouterModule,
-        BacklogRoutingModule
+        BacklogRoutingModule,
+        SharedModule
     ],
     exports: [
         ...PAGES
