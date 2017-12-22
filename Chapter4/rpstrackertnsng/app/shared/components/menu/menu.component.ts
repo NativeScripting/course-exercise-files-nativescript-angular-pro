@@ -14,6 +14,6 @@ export class MenuComponent {
     ) { }
 
     public onSelectPresetTap(preset: PresetType) {
-        // TODO: navigate to the preset URL
+        this.navigationService.navigate(['backlog', preset]);
     }
 }

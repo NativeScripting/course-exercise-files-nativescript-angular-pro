@@ -7,6 +7,7 @@ import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { AppConfig } from '../../../core/models/core';
 import { APP_CONFIG } from '../../../config/app-config.module';
 import { PtItem } from '../../../core/models/domain';
+import { PresetType } from '../../../shared/models/ui/types/presets';
 
 
 @Injectable()
@@ -16,8 +17,21 @@ export class BacklogRepository {
         private http: Http
     ) { }
 
-    private get backlogUrl() {
-        return `${this.config.apiEndpoint}/backlog`;
+    private getFilteredBacklogUrl(currentPreset: PresetType, currentUserId?: number) {
+        switch (currentPreset) {
+            case 'my':
+                if (currentUserId) {
+                    return `${this.config.apiEndpoint}/myItems?userId=${currentUserId}`;
+                } else {
+                    return `${this.config.apiEndpoint}/backlog`;
+                }
+            case 'open':
+                return `${this.config.apiEndpoint}/openItems`;
+            case 'closed':
+                return `${this.config.apiEndpoint}/closedItems`;
+            default:
+                return `${this.config.apiEndpoint}/backlog`;
+        }
     }
 
     private getPtItemUrl(itemId: number) {
@@ -25,10 +39,12 @@ export class BacklogRepository {
     }
 
     public getPtItems(
+        currentPreset: PresetType,
+        currentUserId: number,
         errorHandler: (error: any) => ErrorObservable,
         successHandler: (data: PtItem[]) => void
     ) {
-        this.http.get(this.backlogUrl)
+        this.http.get(this.getFilteredBacklogUrl(currentPreset, currentUserId))
             .map(res => res.json())
             .catch(errorHandler)
             .subscribe(successHandler);

@@ -6,7 +6,7 @@ import { AuthGuard } from '../../core/services';
 
 const routes: Routes = [
     {
-        path: 'backlog',
+        path: 'backlog/:preset',
         component: BacklogPageComponent,
         canActivate: [AuthGuard]
     },
