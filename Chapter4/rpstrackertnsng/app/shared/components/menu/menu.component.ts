@@ -16,4 +16,8 @@ export class MenuComponent {
     public onSelectPresetTap(preset: PresetType) {
         this.navigationService.navigate(['backlog', preset]);
     }
+
+    public onSettingsTap() {
+        this.navigationService.navigate(['settings']);
+    }
 }

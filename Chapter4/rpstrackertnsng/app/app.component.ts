@@ -3,8 +3,6 @@ import { Page } from 'ui/page';
 import { device } from 'platform';
 import { TranslateService } from '@ngx-translate/core';
 import { LoggerService } from './core/services';
-import { Store } from './core/state/app-store';
-import { PtItem } from './core/models/domain';
 
 @Component({
     selector: 'ns-app',
@@ -14,9 +12,7 @@ export class AppComponent {
 
     constructor(
         private page: Page,
-        private store: Store,
-        private translateService: TranslateService,
-        private loggerService: LoggerService
+        private translateService: TranslateService
     ) {
         console.log('app component constructor');
         page.actionBarHidden = true;
@@ -25,9 +21,4 @@ export class AppComponent {
         translateService.setDefaultLang('en');
         translateService.use(device.language);
     }
-
-    public throwError(args) {
-        throw new Error('Error from component');
-    }
-
 }

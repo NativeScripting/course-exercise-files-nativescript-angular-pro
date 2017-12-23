@@ -2,7 +2,6 @@
 import { platformNativeScriptDynamic } from 'nativescript-angular/platform';
 
 import { AppModule } from './app.module';
-import { AppOptions } from 'nativescript-angular/platform-common';
 import { setAppEvents } from './globals/app-events';
 
 setAppEvents();

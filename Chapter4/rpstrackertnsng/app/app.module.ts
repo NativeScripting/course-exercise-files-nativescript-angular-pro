@@ -1,9 +1,11 @@
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA, NgModuleFactoryLoader } from '@angular/core';
 import { Http } from '@angular/http';
 
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 import { NativeScriptHttpModule } from 'nativescript-angular/http';
+import { NSModuleFactoryLoader } from 'nativescript-angular';
 
 import { AppConfigModule } from './config/app-config.module';
 import { AppRoutingModule } from './app.routing';
@@ -11,16 +13,12 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { BacklogModule } from './modules/backlog/backlog.module';
-
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-
 import { createTranslationLoader } from './utils';
 import './utils/console-color';
 import './rxjs-imports';
 
 
-
-console.log('App Module code');
+console.log('AppModule loaded');
 
 @NgModule({
     bootstrap: [
@@ -47,7 +45,7 @@ console.log('App Module code');
         AppComponent
     ],
     providers: [
-
+        { provide: NgModuleFactoryLoader, useClass: NSModuleFactoryLoader }
     ],
     schemas: [
         NO_ERRORS_SCHEMA
@@ -55,6 +53,6 @@ console.log('App Module code');
 })
 export class AppModule {
     constructor() {
-        console.log('App Module constructor');
+        console.log('AppModule constructed');
     }
 }

@@ -4,6 +4,8 @@ import { NativeScriptRouterModule } from 'nativescript-angular/router';
 import { BacklogPageComponent, DetailPageComponent } from './pages';
 import { AuthGuard } from '../../core/services';
 
+console.log('BacklogRoutingModule loaded');
+
 const routes: Routes = [
     {
         path: 'backlog/:preset',
@@ -18,4 +20,8 @@ const routes: Routes = [
     imports: [NativeScriptRouterModule.forChild(routes)],
     exports: [NativeScriptRouterModule]
 })
-export class BacklogRoutingModule { }
+export class BacklogRoutingModule {
+    constructor() {
+        console.log('BacklogRoutingModule constructed');
+    }
+}

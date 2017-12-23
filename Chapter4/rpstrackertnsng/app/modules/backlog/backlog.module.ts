@@ -10,6 +10,8 @@ import { COMPONENTS } from './components';
 import { BacklogRoutingModule } from './backlog.routing';
 import { SharedModule } from '../../shared/shared.module';
 
+console.log('BacklogModule loaded');
+
 @NgModule({
     imports: [
         NativeScriptModule,
@@ -32,4 +34,8 @@ import { SharedModule } from '../../shared/shared.module';
         NO_ERRORS_SCHEMA
     ]
 })
-export class BacklogModule { }
+export class BacklogModule {
+    constructor() {
+        console.log('BacklogModule constructed');
+    }
+}

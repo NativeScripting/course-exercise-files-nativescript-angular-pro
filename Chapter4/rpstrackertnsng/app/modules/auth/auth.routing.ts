@@ -4,6 +4,8 @@ import { NativeScriptRouterModule } from 'nativescript-angular/router';
 import { LoginPageComponent, RegisterPageComponent } from './pages';
 import { AuthContainerComponent } from './containers';
 
+console.log('AuthRoutingModule loaded');
+
 const routes: Routes = [
     {
         path: 'auth',
@@ -25,4 +27,8 @@ const routes: Routes = [
     imports: [NativeScriptRouterModule.forChild(routes)],
     exports: [NativeScriptRouterModule]
 })
-export class AuthRoutingModule { }
+export class AuthRoutingModule {
+    constructor() {
+        console.log('AuthRoutingModule constructed');
+    }
+}

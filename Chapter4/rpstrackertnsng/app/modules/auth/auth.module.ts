@@ -14,7 +14,7 @@ import { PAGES } from './pages';
 import { COMPONENTS } from './components';
 import { AuthRoutingModule } from './auth.routing';
 
-
+console.log('AuthModule loaded');
 
 @NgModule({
     imports: [
@@ -36,4 +36,8 @@ import { AuthRoutingModule } from './auth.routing';
         Store
     ]
 })
-export class AuthModule { }
+export class AuthModule {
+    constructor() {
+        console.log('AuthModule constructed');
+    }
+}
