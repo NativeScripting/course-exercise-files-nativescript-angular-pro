@@ -23,7 +23,6 @@ export class BacklogPageComponent implements OnInit {
 
     constructor(
         private activatedRoute: ActivatedRoute,
-        private authService: AuthService,
         private navigationService: NavigationService,
         private backlogService: BacklogService,
         private store: Store
@@ -45,11 +44,6 @@ export class BacklogPageComponent implements OnInit {
     public selectListItem(item: PtItem) {
         // navigate to detail page
         this.navigationService.navigate(['/detail', item.id]);
-    }
-
-    public onLogoutTap() {
-        this.authService.logout();
-        this.navigationService.navigate(['/auth']);
     }
 
     public onAddTap(args) {
