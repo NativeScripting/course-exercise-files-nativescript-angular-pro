@@ -1,0 +1,6 @@
+{
+    "appType": "Ns",
+    "apiEndpoint": "http://10.142.34.197:8080/api",
+    "loggingEnabled": true,
+    "loggingLevel": "Error"
+}

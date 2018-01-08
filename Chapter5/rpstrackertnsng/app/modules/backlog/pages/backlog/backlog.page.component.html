@@ -1,0 +1,17 @@
+<GridLayout class="backlog-container" rows="*,60, 60, 60">
+
+    <GridLayout row="0" class="list-container">
+        <pt-list [items]="items$ | async" (listItemSelected)="selectListItem($event)"></pt-list>
+    </GridLayout>
+
+    <StackLayout row="1" class="btn-add-wrapper">
+        <Button text="Add" class="btn-add" (tap)="onAddTap($event)"></Button>
+    </StackLayout>
+
+    <Button appLogout row="2" text="Logout"></Button>
+
+    <StackLayout row="3">
+        <pt-menu></pt-menu>
+    </StackLayout>
+
+</GridLayout>
