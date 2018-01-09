@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
+import { RadSideDrawerComponent } from 'nativescript-pro-ui/sidedrawer/angular';
+import { RadSideDrawer, SideDrawerLocation } from 'nativescript-pro-ui/sidedrawer';
 
 import { BacklogService } from '../../services/backlog.service';
 import { Store } from '../../../../core/state/app-store';
@@ -12,13 +15,17 @@ import { AuthService } from '../../../../core/services';
 import { PresetType } from '../../../../shared/models/ui/types/presets';
 
 
+
 @Component({
     moduleId: module.id,
     selector: 'pt-backlog',
     templateUrl: 'backlog.page.component.html',
     styleUrls: ['backlog.page.component.css']
 })
-export class BacklogPageComponent implements OnInit {
+export class BacklogPageComponent implements AfterViewInit, OnInit {
+
+    @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
+    private drawer: RadSideDrawer;
 
     public items$ = this.store.select<PtItem[]>('backlogItems');
     public selectedPreset$: Observable<PresetType> = this.store.select<PresetType>('selectedPreset');
@@ -42,6 +49,20 @@ export class BacklogPageComponent implements OnInit {
         this.selectedPreset$.subscribe(next => {
             this.backlogService.fetchItems();
         });
+    }
+
+    public ngAfterViewInit() {
+        this.drawer = this.drawerComponent.sideDrawer;
+        this.drawer.drawerLocation = SideDrawerLocation.Right;
+    }
+
+    public showSlideout() {
+        this.drawer.mainContent.className = 'drawer-content-in';
+        this.drawer.showDrawer();
+    }
+
+    public onDrawerClosing() {
+        this.drawer.mainContent.className = 'drawer-content-out';
     }
 
     public selectListItem(item: PtItem) {

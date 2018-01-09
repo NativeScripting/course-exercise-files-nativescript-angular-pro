@@ -17,7 +17,7 @@ export class AppComponent {
         _fontIconService: TNSFontIconService
     ) {
         console.log('app component constructor');
-        page.actionBarHidden = true;
+        // page.actionBarHidden = true;
         page.backgroundSpanUnderStatusBar = true;
 
         translateService.setDefaultLang('en');

@@ -1,4 +1,5 @@
 .menu-wrapper {
     width: 100%;
-    justify-content: space-around;
+    align-items: flex-start;
+    flex-direction: column;
 }
