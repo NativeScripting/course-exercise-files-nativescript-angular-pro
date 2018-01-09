@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { TranslateModule } from '@ngx-translate/core';
+import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
 
 import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 import { NativeScriptFormsModule } from 'nativescript-angular/forms';
@@ -21,7 +22,8 @@ console.log('AuthModule loaded');
         NativeScriptModule,
         NativeScriptFormsModule,
         AuthRoutingModule,
-        TranslateModule.forChild()
+        TranslateModule.forChild(),
+        TNSFontIconModule
     ],
     exports: [
         ...PAGES

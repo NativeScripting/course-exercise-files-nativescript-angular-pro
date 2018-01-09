@@ -2,6 +2,7 @@ import { NgModule, NO_ERRORS_SCHEMA, NgModuleFactoryLoader } from '@angular/core
 import { Http } from '@angular/http';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
 
 import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 import { NativeScriptHttpModule } from 'nativescript-angular/http';
@@ -39,6 +40,9 @@ console.log('AppModule loaded');
                 useFactory: (createTranslationLoader),
                 deps: [Http]
             }
+        }),
+        TNSFontIconModule.forRoot({
+            'fa': './assets/css/font-awesome.css'
         })
     ],
     declarations: [
