@@ -13,7 +13,9 @@ import { PtItem } from '../../../../core/models/domain';
 export class PtListComponent {
 
     @Input() items: PtItem[];
+    @Input() isRefreshing: boolean;
     @Output() listItemSelected: EventEmitter<PtItem> = new EventEmitter<PtItem>();
+    @Output() listRefreshRequested: EventEmitter<void> = new EventEmitter<void>();
 
     constructor() { }
 
@@ -23,4 +25,7 @@ export class PtListComponent {
         this.listItemSelected.emit(item);
     }
 
+    public refreshList(_args) {
+        this.listRefreshRequested.emit();
+    }
 }

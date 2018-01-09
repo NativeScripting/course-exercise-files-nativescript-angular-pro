@@ -7,6 +7,7 @@ import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
 import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 import { NativeScriptHttpModule } from 'nativescript-angular/http';
 import { NSModuleFactoryLoader } from 'nativescript-angular';
+import { registerElement } from 'nativescript-angular/element-registry';
 
 import { AppConfigModule } from './config/app-config.module';
 import { AppRoutingModule } from './app.routing';
@@ -18,8 +19,7 @@ import { createTranslationLoader } from './utils';
 import './utils/console-color';
 import './rxjs-imports';
 
-
-console.log('AppModule loaded');
+registerElement('PullToRefresh', () => require('nativescript-pulltorefresh').PullToRefresh);
 
 @NgModule({
     bootstrap: [

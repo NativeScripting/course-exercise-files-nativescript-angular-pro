@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { BacklogService } from '../../services/backlog.service';
 import { Store } from '../../../../core/state/app-store';
@@ -9,6 +10,7 @@ import { PtItem } from '../../../../core/models/domain';
 import { NavigationService } from '../../../../core/services/navigation.service';
 import { AuthService } from '../../../../core/services';
 import { PresetType } from '../../../../shared/models/ui/types/presets';
+
 
 @Component({
     moduleId: module.id,
@@ -20,6 +22,7 @@ export class BacklogPageComponent implements OnInit {
 
     public items$ = this.store.select<PtItem[]>('backlogItems');
     public selectedPreset$: Observable<PresetType> = this.store.select<PresetType>('selectedPreset');
+    public isListRefreshing$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -44,6 +47,17 @@ export class BacklogPageComponent implements OnInit {
     public selectListItem(item: PtItem) {
         // navigate to detail page
         this.navigationService.navigate(['/detail', item.id]);
+    }
+
+    public onListRefreshRequested() {
+        this.isListRefreshing$.next(true);
+        this.backlogService.fetchItems()
+            .then(() => {
+                this.isListRefreshing$.next(false);
+            })
+            .catch(() => {
+                this.isListRefreshing$.next(false);
+            });
     }
 
     public onAddTap(args) {
