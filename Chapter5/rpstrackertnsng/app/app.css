@@ -1,5 +1,9 @@
 @import url("~/platform.css");
 
+.fa {
+    font-family: FontAwesome, fontawesome-webfont;
+}
+
 Page {
     background-color:  #4b5833;
 }
