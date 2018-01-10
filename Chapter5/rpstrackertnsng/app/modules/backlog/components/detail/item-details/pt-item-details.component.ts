@@ -12,7 +12,7 @@ import { ItemType } from '../../../../../core/constants/pt-item-types';
 import { PtItemType } from '../../../../../core/models/domain/types';
 import { PT_ITEM_STATUSES, PT_ITEM_PRIORITIES, COLOR_LIGHT, COLOR_DARK } from '../../../../../core/constants';
 import {
-    setStepperEditorContentOffset, setStepperEditorTextPostfix, setStepperEditorColors
+    setStepperEditorContentOffset, setStepperEditorTextPostfix, setStepperEditorColors, setMultiLineEditorFontSize
 } from '../../../../../shared/helpers/ui-data-form';
 
 @Component({
@@ -81,8 +81,13 @@ export class PtItemDetailsComponent implements OnInit {
 
     public onEditorUpdate(args: DataFormEventData) {
         switch (args.propertyName) {
+            case 'description': this.editorSetupDescription(args.editor); break;
             case 'estimate': this.editorSetupEstimate(args.editor); break;
         }
+    }
+
+    private editorSetupDescription(editor) {
+        setMultiLineEditorFontSize(editor, 17);
     }
 
     private editorSetupEstimate(editor) {
