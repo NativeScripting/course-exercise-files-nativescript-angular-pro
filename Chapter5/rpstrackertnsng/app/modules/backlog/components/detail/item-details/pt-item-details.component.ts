@@ -10,9 +10,10 @@ import { PtItem } from '../../../../../core/models/domain';
 import { PtItemDetailsEditFormModel, ptItemToFormModel } from '../../../../../shared/models/forms';
 import { ItemType } from '../../../../../core/constants/pt-item-types';
 import { PtItemType } from '../../../../../core/models/domain/types';
+import { PriorityEnum } from '../../../../../core/models/domain/enums';
 import { PT_ITEM_STATUSES, PT_ITEM_PRIORITIES, COLOR_LIGHT, COLOR_DARK } from '../../../../../core/constants';
 import {
-    setStepperEditorContentOffset, setStepperEditorTextPostfix, setStepperEditorColors, setMultiLineEditorFontSize
+    setStepperEditorContentOffset, setStepperEditorTextPostfix, setStepperEditorColors, setMultiLineEditorFontSize, setSegmentedEditorColor
 } from '../../../../../shared/helpers/ui-data-form';
 
 @Component({
@@ -29,6 +30,7 @@ export class PtItemDetailsComponent implements OnInit {
     @ViewChild('itemDetailsDataForm') itemDetailsDataForm: RadDataFormComponent;
 
     private selectedTypeValue: PtItemType;
+    private selectedPriorityValue: PriorityEnum;
 
     public itemForm: PtItemDetailsEditFormModel;
     public itemTypesProvider = ItemType.List.map((t) => t.PtItemType);
@@ -83,6 +85,7 @@ export class PtItemDetailsComponent implements OnInit {
         switch (args.propertyName) {
             case 'description': this.editorSetupDescription(args.editor); break;
             case 'estimate': this.editorSetupEstimate(args.editor); break;
+            case 'priorityStr': this.editorSetupPriority(args.editor); break;
         }
     }
 
@@ -97,5 +100,11 @@ export class PtItemDetailsComponent implements OnInit {
         setStepperEditorTextPostfix(editor, 'point', 'points');
         // 3. set colors
         setStepperEditorColors(editor, COLOR_LIGHT, COLOR_DARK);
+    }
+
+    private editorSetupPriority(editor) {
+        const editorPriority = <PriorityEnum>editor.value;
+        this.selectedPriorityValue = editorPriority ? editorPriority : <PriorityEnum>this.itemForm.priorityStr;
+        setSegmentedEditorColor(editor, PriorityEnum.getColor(this.selectedPriorityValue));
     }
 }

@@ -1,3 +1,5 @@
+import { Color } from 'tns-core-modules/color';
+
 export enum PriorityEnum {
     Low = 'Low',
     Medium = 'Medium',
@@ -47,6 +49,18 @@ export namespace PriorityEnum {
                 return 'indicator-priority low';
             default:
                 return '';
+        }
+    }
+    export function getColor(priority: PriorityEnum): Color {
+        switch (priority) {
+            case PriorityEnum.Critical:
+                return new Color('#820101');
+            case PriorityEnum.High:
+                return new Color('#b27100');
+            case PriorityEnum.Medium:
+                return new Color('#0c6d00');
+            case PriorityEnum.Low:
+                return new Color('#002b6d');
         }
     }
 }
