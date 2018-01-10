@@ -10,7 +10,10 @@ import { PtItem } from '../../../../../core/models/domain';
 import { PtItemDetailsEditFormModel, ptItemToFormModel } from '../../../../../shared/models/forms';
 import { ItemType } from '../../../../../core/constants/pt-item-types';
 import { PtItemType } from '../../../../../core/models/domain/types';
-import { PT_ITEM_STATUSES, PT_ITEM_PRIORITIES } from '../../../../../core/constants';
+import { PT_ITEM_STATUSES, PT_ITEM_PRIORITIES, COLOR_LIGHT, COLOR_DARK } from '../../../../../core/constants';
+import {
+    setStepperEditorContentOffset, setStepperEditorTextPostfix, setStepperEditorColors
+} from '../../../../../shared/helpers/ui-data-form';
 
 @Component({
     moduleId: module.id,
@@ -74,5 +77,20 @@ export class PtItemDetailsComponent implements OnInit {
             estimate: this.itemForm.estimate,
         });
         return updatedItem;
+    }
+
+    public onEditorUpdate(args: DataFormEventData) {
+        switch (args.propertyName) {
+            case 'estimate': this.editorSetupEstimate(args.editor); break;
+        }
+    }
+
+    private editorSetupEstimate(editor) {
+        // 1. set content offset
+        setStepperEditorContentOffset(editor, -25, 0);
+        // 2. set postfix
+        setStepperEditorTextPostfix(editor, 'point', 'points');
+        // 3. set colors
+        setStepperEditorColors(editor, COLOR_LIGHT, COLOR_DARK);
     }
 }
