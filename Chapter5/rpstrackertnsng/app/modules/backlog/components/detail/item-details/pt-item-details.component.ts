@@ -13,7 +13,9 @@ import { PtItemType } from '../../../../../core/models/domain/types';
 import { PriorityEnum } from '../../../../../core/models/domain/enums';
 import { PT_ITEM_STATUSES, PT_ITEM_PRIORITIES, COLOR_LIGHT, COLOR_DARK } from '../../../../../core/constants';
 import {
-    setStepperEditorContentOffset, setStepperEditorTextPostfix, setStepperEditorColors, setMultiLineEditorFontSize, setSegmentedEditorColor
+    setStepperEditorContentOffset, setStepperEditorTextPostfix,
+    setStepperEditorColors, setMultiLineEditorFontSize, setSegmentedEditorColor, setPickerEditorImageLocation,
+    getPickerEditorValueText
 } from '../../../../../shared/helpers/ui-data-form';
 
 @Component({
@@ -86,6 +88,7 @@ export class PtItemDetailsComponent implements OnInit {
             case 'description': this.editorSetupDescription(args.editor); break;
             case 'estimate': this.editorSetupEstimate(args.editor); break;
             case 'priorityStr': this.editorSetupPriority(args.editor); break;
+            case 'typeStr': this.editorSetupType(args.editor); break;
         }
     }
 
@@ -106,5 +109,10 @@ export class PtItemDetailsComponent implements OnInit {
         const editorPriority = <PriorityEnum>editor.value;
         this.selectedPriorityValue = editorPriority ? editorPriority : <PriorityEnum>this.itemForm.priorityStr;
         setSegmentedEditorColor(editor, PriorityEnum.getColor(this.selectedPriorityValue));
+    }
+
+    private editorSetupType(editor) {
+        setPickerEditorImageLocation(editor);
+        this.selectedTypeValue = <PtItemType>getPickerEditorValueText(editor);
     }
 }
