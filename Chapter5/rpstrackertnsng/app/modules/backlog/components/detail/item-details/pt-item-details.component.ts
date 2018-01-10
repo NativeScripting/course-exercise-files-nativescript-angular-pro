@@ -8,6 +8,9 @@ import { RadDataFormComponent } from 'nativescript-pro-ui/dataform/angular';
 
 import { PtItem } from '../../../../../core/models/domain';
 import { PtItemDetailsEditFormModel, ptItemToFormModel } from '../../../../../shared/models/forms';
+import { ItemType } from '../../../../../core/constants/pt-item-types';
+import { PtItemType } from '../../../../../core/models/domain/types';
+import { PT_ITEM_STATUSES, PT_ITEM_PRIORITIES } from '../../../../../core/constants';
 
 @Component({
     moduleId: module.id,
@@ -22,12 +25,28 @@ export class PtItemDetailsComponent implements OnInit {
     @Output() itemSaved = new EventEmitter<PtItem>();
     @ViewChild('itemDetailsDataForm') itemDetailsDataForm: RadDataFormComponent;
 
+    private selectedTypeValue: PtItemType;
+
     public itemForm: PtItemDetailsEditFormModel;
+    public itemTypesProvider = ItemType.List.map((t) => t.PtItemType);
+    public statusesProvider = PT_ITEM_STATUSES;
+    public prioritiesProvider = PT_ITEM_PRIORITIES;
+
+    public get itemTypeEditorDisplayName() {
+        return 'Type';
+    }
+
+    public get itemTypeImage() {
+        return ItemType.imageResFromType(this.selectedTypeValue);
+    }
+
 
     constructor() { }
 
     public ngOnInit() {
         this.itemForm = ptItemToFormModel(this.item);
+
+        this.selectedTypeValue = <PtItemType>this.itemForm.typeStr;
     }
 
     public onPropertyCommitted() {
@@ -47,7 +66,12 @@ export class PtItemDetailsComponent implements OnInit {
 
     private getUpdatedItem(): PtItem {
         const updatedItem = Object.assign({}, this.item, {
-            title: this.itemForm.title
+            title: this.itemForm.title,
+            description: this.itemForm.description,
+            type: this.itemForm.typeStr,
+            status: this.itemForm.statusStr,
+            priority: this.itemForm.priorityStr,
+            estimate: this.itemForm.estimate,
         });
         return updatedItem;
     }

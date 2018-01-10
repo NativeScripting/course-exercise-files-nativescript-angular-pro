@@ -9,7 +9,7 @@ const PT_ITEM_TYPE_IMPEDIMENT: PtItemType = 'Impediment';
 export class ItemType {
     private static itPbi = new ItemType(PT_ITEM_TYPE_PBI);
     private static itBug = new ItemType(PT_ITEM_TYPE_BUG);
-    private static itChore = new ItemType(PT_ITEM_TYPE_BUG);
+    private static itChore = new ItemType(PT_ITEM_TYPE_CHORE);
     private static itImpediment = new ItemType(PT_ITEM_TYPE_IMPEDIMENT);
 
     public static get Pbi() {

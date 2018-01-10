@@ -8,6 +8,36 @@
             <TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Title can't be empty."></TKNonEmptyValidator>
         </TKEntityProperty>
 
+        <TKEntityProperty tkDataFormProperty name="description" displayName="Description" index="2" required="true" hintText="description">
+            <TKPropertyEditor tkEntityPropertyEditor type="MultilineText">
+                <TKPropertyEditorStyle tkPropertyEditorStyle labelTextColor="#4b5833" labelPosition="top"></TKPropertyEditorStyle>
+            </TKPropertyEditor>
+        </TKEntityProperty>
+
+        <TKEntityProperty tkDataFormProperty name="typeStr" [displayName]="itemTypeEditorDisplayName" index="3" [imageResource]="itemTypeImage"
+            [valuesProvider]="itemTypesProvider">
+            <TKPropertyEditor tkEntityPropertyEditor type="Picker">
+                <TKPropertyEditorStyle tkPropertyEditorStyle labelTextColor="#4b5833"></TKPropertyEditorStyle>
+            </TKPropertyEditor>
+        </TKEntityProperty>
+
+        <TKEntityProperty tkDataFormProperty name="statusStr" displayName="Status" index="4" [valuesProvider]="statusesProvider">
+            <TKPropertyEditor tkEntityPropertyEditor type="Picker">
+                <TKPropertyEditorStyle tkPropertyEditorStyle labelTextColor="#4b5833"></TKPropertyEditorStyle>
+            </TKPropertyEditor>
+        </TKEntityProperty>
+
+        <TKEntityProperty tkDataFormProperty name="estimate" displayName="Estimate" index="5">
+            <TKPropertyEditor tkEntityPropertyEditor type="Stepper">
+                <TKPropertyEditorStyle tkPropertyEditorStyle labelTextColor="#4b5833"></TKPropertyEditorStyle>
+            </TKPropertyEditor>
+        </TKEntityProperty>
+
+        <TKEntityProperty tkDataFormProperty name="priorityStr" displayName="Priority" index="6" [valuesProvider]="prioritiesProvider">
+            <TKPropertyEditor tkEntityPropertyEditor type="SegmentedEditor">
+                <TKPropertyEditorStyle tkPropertyEditorStyle labelTextColor="#4b5833" labelPosition="top"></TKPropertyEditorStyle>
+            </TKPropertyEditor>
+        </TKEntityProperty>
 
     </RadDataForm>
 
