@@ -3,5 +3,5 @@
 </ActionBar>
 
 <StackLayout class="pt-item-detail-header">
-    <pt-item-details [item]="currentSelectedItem$ | async"></pt-item-details>
+    <pt-item-details [item]="currentSelectedItem$ | async" (itemSaved)="onItemSaved($event)"></pt-item-details>
 </StackLayout>

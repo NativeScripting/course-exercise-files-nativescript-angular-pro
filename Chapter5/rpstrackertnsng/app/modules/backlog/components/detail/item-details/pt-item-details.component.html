@@ -1,6 +1,6 @@
 <GridLayout rows="*" class="pt-item-details-container">
 
-    <RadDataForm [source]="itemForm">
+    <RadDataForm #itemDetailsDataForm [source]="itemForm" (propertyCommitted)="onPropertyCommitted($event)">
         <TKEntityProperty tkDataFormProperty name="title" displayName="Title" index="1" hintText="Title">
             <TKPropertyEditor tkEntityPropertyEditor type="Text">
                 <TKPropertyEditorStyle tkPropertyEditorStyle labelTextColor="#4b5833" labelPosition="top"></TKPropertyEditorStyle>

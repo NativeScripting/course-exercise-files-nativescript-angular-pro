@@ -28,6 +28,10 @@ export class DetailPageComponent implements OnInit {
         this.backlogService.getItemFromCacheOrServer(parseInt(this.activatedRoute.snapshot.params['id']));
     }
 
+    public onItemSaved(item: PtItem) {
+        this.backlogService.updatePtItem(item);
+    }
+
     public onNavBackTap() {
         // TODO: navigate back to previous page
     }

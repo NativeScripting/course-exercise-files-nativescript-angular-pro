@@ -38,6 +38,10 @@ export class BacklogRepository {
         return `${this.config.apiEndpoint}/item/${itemId}`;
     }
 
+    private putPtItemUrl(itemId: number) {
+        return `${this.config.apiEndpoint}/item/${itemId}`;
+    }
+
     public getPtItems(
         currentPreset: PresetType,
         currentUserId: number,
@@ -56,6 +60,20 @@ export class BacklogRepository {
         successHandler: (ptItem: PtItem) => void
     ) {
         this.http.get(this.getPtItemUrl(ptItemId))
+            .map(res => res.json())
+            .catch(errorHandler)
+            .subscribe(successHandler);
+    }
+
+    public updatePtItem(
+        item: PtItem,
+        errorHandler: (error: any) => ErrorObservable,
+        successHandler: (updatedItem: PtItem) => void
+    ) {
+        this.http.put(
+            this.putPtItemUrl(item.id),
+            { item: item }
+        )
             .map(res => res.json())
             .catch(errorHandler)
             .subscribe(successHandler);
