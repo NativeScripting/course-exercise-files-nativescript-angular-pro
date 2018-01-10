@@ -3,5 +3,5 @@
 </ActionBar>
 
 <StackLayout class="pt-item-detail-header">
-    <Label [text]="(currentSelectedItem$ | async)?.title" class="pt-item-detail-header-title"></Label>
+    <pt-item-details [item]="currentSelectedItem$ | async"></pt-item-details>
 </StackLayout>
