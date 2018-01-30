@@ -49,3 +49,7 @@ nginx/keys
 #nativescript ignores
 **/platforms
 **/node_modules
+
+#nativescripting course wip projects
+**/*_wip
+**/*_final
