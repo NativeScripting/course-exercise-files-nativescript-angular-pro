@@ -5,6 +5,7 @@ import { NativeScriptUIDataFormModule } from 'nativescript-pro-ui/dataform/angul
 
 import { MenuComponent } from './components/menu/menu.component';
 import { LogoutDirective } from './directives/app-logout-attribute.directive';
+import { PtModalService } from './modals/pt-modal.service';
 
 
 @NgModule({
@@ -22,6 +23,8 @@ import { LogoutDirective } from './directives/app-logout-attribute.directive';
         MenuComponent,
         LogoutDirective
     ],
-    providers: [],
+    providers: [
+        PtModalService
+    ],
 })
 export class SharedModule { }
