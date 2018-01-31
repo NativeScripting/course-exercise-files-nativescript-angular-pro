@@ -38,6 +38,10 @@ export class BacklogRepository {
         return `${this.config.apiEndpoint}/item/${itemId}`;
     }
 
+    private postPtItemUrl() {
+        return `${this.config.apiEndpoint}/item`;
+    }
+
     private putPtItemUrl(itemId: number) {
         return `${this.config.apiEndpoint}/item/${itemId}`;
     }
@@ -60,6 +64,21 @@ export class BacklogRepository {
         successHandler: (ptItem: PtItem) => void
     ) {
         this.http.get(this.getPtItemUrl(ptItemId))
+            .map(res => res.json())
+            .catch(errorHandler)
+            .subscribe(successHandler);
+    }
+
+
+    public insertPtItem(
+        item: PtItem,
+        errorHandler: (error: any) => ErrorObservable,
+        successHandler: (nextItem: PtItem) => void
+    ) {
+        this.http.post(
+            this.postPtItemUrl(),
+            { item: item }
+        )
             .map(res => res.json())
             .catch(errorHandler)
             .subscribe(successHandler);

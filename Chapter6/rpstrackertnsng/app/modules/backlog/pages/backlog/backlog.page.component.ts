@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
@@ -6,14 +6,15 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { RadSideDrawerComponent } from 'nativescript-pro-ui/sidedrawer/angular';
 import { RadSideDrawer, SideDrawerLocation } from 'nativescript-pro-ui/sidedrawer';
-
+import { PtModalService } from '../../../../shared/modals/pt-modal.service';
 import { BacklogService } from '../../services/backlog.service';
 import { Store } from '../../../../core/state/app-store';
 import { PtItem } from '../../../../core/models/domain';
 import { NavigationService } from '../../../../core/services/navigation.service';
 import { AuthService } from '../../../../core/services';
 import { PresetType } from '../../../../shared/models/ui/types/presets';
-
+import { PtNewItem } from '../../../../shared/models/dto';
+import { NewItemModalComponent } from '../../modals/new-item/new-item.modal.component';
 
 
 @Component({
@@ -35,7 +36,9 @@ export class BacklogPageComponent implements AfterViewInit, OnInit {
         private activatedRoute: ActivatedRoute,
         private navigationService: NavigationService,
         private backlogService: BacklogService,
-        private store: Store
+        private ptModalService: PtModalService,
+        private store: Store,
+        private vcRef: ViewContainerRef
     ) { }
 
     public ngOnInit() {
@@ -81,7 +84,13 @@ export class BacklogPageComponent implements AfterViewInit, OnInit {
             });
     }
 
-    public onAddTap(args) {
-        // show add item dialog
+    public onAddTap(_args) {
+        const ctx = this.ptModalService.createPtModalContext<null, PtNewItem>(this.vcRef, 'Add New Item', null, null, 'Save');
+        this.ptModalService.createModal(NewItemModalComponent, ctx)
+            .then(result => {
+                if (result) {
+                    this.backlogService.addNewPtItem(result, this.store.value.currentUser);
+                }
+            });
     }
 }

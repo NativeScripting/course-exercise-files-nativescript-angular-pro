@@ -1,4 +1,4 @@
-import { Injectable, Type } from '@angular/core';
+import { Injectable, Type, ViewContainerRef } from '@angular/core';
 import { ModalDialogService, ModalDialogOptions } from 'nativescript-angular';
 import { PtModalContext } from '../models/ui/pt-modal-context.model';
 
@@ -10,6 +10,24 @@ export class PtModalService {
     constructor(
         private modalService: ModalDialogService
     ) { }
+
+    public createPtModalContext<T, R>(
+        vcRef: ViewContainerRef,
+        title: string,
+        payload: T,
+        defaultResult: R = null,
+        btnOkText: string = 'Done',
+        btnCancelText: string = 'Cancel'
+    ): PtModalContext<T, R> {
+        return {
+            vcRef,
+            title,
+            payload,
+            defaultResult,
+            btnOkText,
+            btnCancelText
+        };
+    }
 
     public createModal<T, R>(
         type: Type<any>,

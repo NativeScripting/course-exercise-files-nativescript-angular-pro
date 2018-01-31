@@ -5,12 +5,11 @@ import { NativeScriptRouterModule } from 'nativescript-angular/router';
 
 import { BacklogService } from './services/backlog.service';
 import { BacklogRepository } from './repositories/backlog.repository';
-import { PAGES } from './pages';
-import { COMPONENTS } from './components';
 import { BacklogRoutingModule } from './backlog.routing';
 import { SharedModule } from '../../shared/shared.module';
-
-console.log('BacklogModule loaded');
+import { PAGES } from './pages';
+import { COMPONENTS } from './components';
+import { NewItemModalComponent } from './modals/new-item/new-item.modal.component';
 
 @NgModule({
     imports: [
@@ -25,6 +24,10 @@ console.log('BacklogModule loaded');
     declarations: [
         ...PAGES,
         ...COMPONENTS,
+        NewItemModalComponent
+    ],
+    entryComponents: [
+        NewItemModalComponent
     ],
     providers: [
         BacklogRepository,

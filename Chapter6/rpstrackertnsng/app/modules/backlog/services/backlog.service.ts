@@ -8,8 +8,9 @@ import { BacklogRepository } from '../repositories/backlog.repository';
 
 import { ServerErrorHandlerService } from '../../../core/services';
 import { PtItem, PtUser } from '../../../core/models/domain';
-
-
+import { PtNewItem } from '../../../shared/models/dto';
+import { PriorityEnum, StatusEnum } from '../../../core/models/domain/enums';
+import { getUserAvatarUrl } from '../../../core/helpers';
 
 
 @Injectable()
@@ -97,6 +98,33 @@ export class BacklogService {
         );
     }
 
+    public addNewPtItem(newItem: PtNewItem, assignee: PtUser) {
+        const item: PtItem = {
+            id: 0,
+            title: newItem.title,
+            description: newItem.description,
+            type: newItem.type,
+            estimate: 0,
+            priority: PriorityEnum.Medium,
+            status: StatusEnum.Open,
+            assignee: assignee,
+            tasks: [],
+            comments: [],
+            dateCreated: new Date(),
+            dateModified: new Date()
+        };
+        this.repo.insertPtItem(
+            item,
+            this.errorHandlerService.handleHttpError,
+            (nextItem: PtItem) => {
+                this.setUserAvatar(nextItem.assignee);
+                this.zone.run(() => {
+                    this.store.set('backlogItems', [nextItem, ...this.store.value.backlogItems]);
+                });
+            }
+        );
+    }
+
     public updatePtItem(item: PtItem) {
         this.repo.updatePtItem(item,
             this.errorHandlerService.handleHttpError,
@@ -104,6 +132,10 @@ export class BacklogService {
                 this.getPtItem(updatedItem.id);
             }
         );
+    }
+
+    private setUserAvatar(user: PtUser) {
+        user.avatar = getUserAvatarUrl(this.config.apiEndpoint, user.id);
     }
 
 }
