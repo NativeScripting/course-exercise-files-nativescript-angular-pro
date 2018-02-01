@@ -39,6 +39,11 @@
             </TKPropertyEditor>
         </TKEntityProperty>
 
+        <TKEntityProperty tkDataFormProperty name="assigneeName" displayName="Assignee" index="7">
+            <TKCustomPropertyEditor tkEntityPropertyEditor (editorNeedsView)="onAssigneeEditorNeedsView($event)">
+            </TKCustomPropertyEditor>
+        </TKEntityProperty>
+
     </RadDataForm>
 
 </GridLayout>

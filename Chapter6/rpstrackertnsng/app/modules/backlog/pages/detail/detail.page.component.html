@@ -22,7 +22,7 @@
 
     <StackLayout [ngSwitch]="selectedDetailsScreen">
         <ng-template [ngSwitchCase]="'details'">
-            <pt-item-details [item]="currentSelectedItem$ | async" [users$]="users$" (itemSaved)="onItemSaved($event)"></pt-item-details>
+            <pt-item-details [item]="currentSelectedItem$ | async" [users$]="users$" (itemSaved)="onItemSaved($event)" (usersRequested)="onUsersRequested($event)"></pt-item-details>
         </ng-template>
         <ng-template [ngSwitchCase]="'tasks'">
             <pt-item-tasks [item]="currentSelectedItem$ | async" (addNewTask)="onAddNewTask($event)" (updateTask)="onUpdateTask($event)"></pt-item-tasks>

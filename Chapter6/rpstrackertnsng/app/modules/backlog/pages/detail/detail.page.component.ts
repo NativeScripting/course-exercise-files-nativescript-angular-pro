@@ -5,12 +5,13 @@ import { Observable } from 'rxjs/Observable';
 
 import { PtItem, PtUser } from '../../../../core/models/domain';
 import { BacklogService } from '../../services/backlog.service';
-
+import { PtUserService } from '../../../../core/services';
 import { Store } from '../../../../core/state/app-store';
 import { PtModalService } from '../../../../shared/modals/pt-modal.service';
 import { TextInputModalComponent } from '../../../../shared/modals/text-input/text-input.modal.component';
 import { PtNewTask, PtNewComment, PtTaskUpdate } from '../../../../shared/models/dto';
 import { DetailScreenType } from '../../../../shared/models/ui/types';
+
 
 @Component({
     moduleId: module.id,
@@ -22,11 +23,13 @@ export class DetailPageComponent implements OnInit {
 
     public selectedDetailsScreen: DetailScreenType = 'details';
     public currentSelectedItem$: Observable<PtItem> = this.store.select<PtItem>('currentSelectedItem');
+    public users$: Observable<PtUser[]> = this.store.select<PtUser[]>('users');
     public currentUser$: Observable<PtUser> = this.store.select<PtUser>('currentUser');
 
     constructor(
         private activatedRoute: ActivatedRoute,
         private backlogService: BacklogService,
+        private ptUserService: PtUserService,
         private store: Store
     ) { }
 
@@ -36,6 +39,10 @@ export class DetailPageComponent implements OnInit {
 
     public onScreenSelected(screen: DetailScreenType) {
         this.selectedDetailsScreen = screen;
+    }
+
+    public onUsersRequested() {
+        this.ptUserService.fetchUsers();
     }
 
     public onAddNewTask(newTask: PtNewTask) {

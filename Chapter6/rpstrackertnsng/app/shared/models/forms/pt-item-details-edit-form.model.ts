@@ -7,6 +7,7 @@ export interface PtItemDetailsEditFormModel {
     statusStr: string;
     estimate: number;
     priorityStr: string;
+    assigneeName: string;
 }
 
 export function ptItemToFormModel(item: PtItem): PtItemDetailsEditFormModel {
@@ -16,6 +17,7 @@ export function ptItemToFormModel(item: PtItem): PtItemDetailsEditFormModel {
         typeStr: item.type,
         statusStr: item.status,
         estimate: item.estimate,
-        priorityStr: item.priority
+        priorityStr: item.priority,
+        assigneeName: item.assignee ? item.assignee.fullName : 'unassigned'
     };
 }
