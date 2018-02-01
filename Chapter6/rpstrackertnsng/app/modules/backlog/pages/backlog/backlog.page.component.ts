@@ -6,15 +6,17 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { RadSideDrawerComponent } from 'nativescript-pro-ui/sidedrawer/angular';
 import { RadSideDrawer, SideDrawerLocation } from 'nativescript-pro-ui/sidedrawer';
-import { PtModalService } from '../../../../shared/modals/pt-modal.service';
+
 import { BacklogService } from '../../services/backlog.service';
 import { Store } from '../../../../core/state/app-store';
 import { PtItem } from '../../../../core/models/domain';
 import { NavigationService } from '../../../../core/services/navigation.service';
 import { AuthService } from '../../../../core/services';
 import { PresetType } from '../../../../shared/models/ui/types/presets';
-import { PtNewItem } from '../../../../shared/models/dto';
+import { PtModalService } from '../../../../shared/modals/pt-modal.service';
 import { NewItemModalComponent } from '../../modals/new-item/new-item.modal.component';
+import { PtNewItem } from '../../../../shared/models/dto';
+
 
 
 @Component({
@@ -36,8 +38,8 @@ export class BacklogPageComponent implements AfterViewInit, OnInit {
         private activatedRoute: ActivatedRoute,
         private navigationService: NavigationService,
         private backlogService: BacklogService,
-        private ptModalService: PtModalService,
         private store: Store,
+        private ptModalService: PtModalService,
         private vcRef: ViewContainerRef
     ) { }
 

@@ -5,12 +5,12 @@
 }
 
 Page {
-    background-color:  #4b5833;
+    background-color:  #ffffff;
 }
 
 ActionBar {
     background-color:  #4b5833;
-    color: white;
+    color: #ffffff;
 }
 
 TextView {
@@ -20,6 +20,14 @@ TextView {
 Button {
     color: #ffffff;
     border-radius: 0;
+    border-color: transparent;
+    border-width: 1;
+    background-color: transparent;
+    padding: 10 10 10 10;
+}
+
+Button:highlighted {
+    color: #4b5833;
 }
 
 .hr {
@@ -131,14 +139,6 @@ Button {
     color: #ffffff;
 }
 
-/*
-.input-field {
-    margin-left: 15;
-    margin-right: 15;
-    font-size: 14;
-}
-*/
-
 .input {
     color: #4b5833;
 }
@@ -163,16 +163,6 @@ Button {
 .input-img.avatar {
     height: 30;
     margin-right: 0;
-}
-
-.pt-item-detail-header {
-    background-color: #333333;
-    color: #ffffff;
-    padding: 10;
-}
-
-.pt-item-detail-header.bold {
-    font-weight: bold;
 }
 
 .user-picker-row {

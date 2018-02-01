@@ -1,9 +1,9 @@
 import { Page } from 'ui/page';
 import { ModalDialogParams } from 'nativescript-angular';
+
 import { PtModalContext } from '../models/ui/pt-modal-context.model';
 
 export class PtModalComponentBase<T, R> {
-
     protected modalContext: PtModalContext<T, R>;
     protected closeCallback: (...args: any[]) => any;
 
@@ -27,7 +27,7 @@ export class PtModalComponentBase<T, R> {
         private params: ModalDialogParams,
         private page: Page
     ) {
-        this.modalContext = params.context;
+        this.modalContext = <PtModalContext<T, R>>params.context;
         this.closeCallback = params.closeCallback;
 
         this.page.on('unloaded', () => {

@@ -1,6 +1,7 @@
 import { Injectable, Type, ViewContainerRef } from '@angular/core';
 import { ModalDialogService, ModalDialogOptions } from 'nativescript-angular';
-import { PtModalContext } from '../models/ui/pt-modal-context.model';
+
+import { PtModalContext } from '../models/ui';
 
 @Injectable()
 export class PtModalService {
@@ -37,7 +38,7 @@ export class PtModalService {
             return Promise.reject<R>('A modal dialog is already showing.');
         }
 
-        return new Promise((resolve, reject) => {
+        return new Promise<R>((resolve, reject) => {
             const options: ModalDialogOptions = {
                 fullscreen: true,
                 context: context,

@@ -1,7 +1,35 @@
 <ActionBar title="Item">
     <NavigationButton text="Back" android.systemIcon="ic_menu_back" (tap)="onNavBackTap()"></NavigationButton>
+
+    <ActionItem (tap)="onDeleteTap()" ios.systemIcon="16" ios.position="right" text="delete" android.systemIcon="ic_menu_delete"
+        android.position="actionBar"></ActionItem>
 </ActionBar>
 
-<StackLayout class="pt-item-detail-header">
-    <pt-item-details [item]="currentSelectedItem$ | async" (itemSaved)="onItemSaved($event)"></pt-item-details>
+<StackLayout>
+
+    <GridLayout class="pt-item-detail-header" rows="*, 40">
+
+        <GridLayout row="0" columns="auto, *" class="pt-item-detail-header-title-row">
+            <Image width="50" height="50" class="pt-item-detail-avatar" [src]="(currentSelectedItem$ | async)?.assignee.avatar" col="0"></Image>
+            <Label [text]="(currentSelectedItem$ | async)?.title" class="pt-item-detail-header-title" col="1"></Label>
+        </GridLayout>
+
+        <StackLayout row="1">
+            <pt-detail-section-selector [selectedScreen]="selectedDetailsScreen" (screenSelected)="onScreenSelected($event)"></pt-detail-section-selector>
+        </StackLayout>
+    </GridLayout>
+
+
+    <StackLayout [ngSwitch]="selectedDetailsScreen">
+        <ng-template [ngSwitchCase]="'details'">
+            <pt-item-details [item]="currentSelectedItem$ | async" [users$]="users$" (itemSaved)="onItemSaved($event)"></pt-item-details>
+        </ng-template>
+        <ng-template [ngSwitchCase]="'tasks'">
+            <pt-item-tasks [item]="currentSelectedItem$ | async" (addNewTask)="onAddNewTask($event)" (updateTask)="onUpdateTask($event)"></pt-item-tasks>
+        </ng-template>
+        <ng-template [ngSwitchCase]="'chitchat'">
+            <pt-item-chitchat [item]="currentSelectedItem$ | async" [currentUser]="currentUser$ | async" (addNewComment)="onAddNewComment($event)"></pt-item-chitchat>
+        </ng-template>
+    </StackLayout>
+
 </StackLayout>

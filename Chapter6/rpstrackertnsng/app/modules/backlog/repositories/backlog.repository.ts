@@ -6,7 +6,7 @@ import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 
 import { AppConfig } from '../../../core/models/core';
 import { APP_CONFIG } from '../../../config/app-config.module';
-import { PtItem } from '../../../core/models/domain';
+import { PtTask, PtItem, PtComment } from '../../../core/models/domain';
 import { PresetType } from '../../../shared/models/ui/types/presets';
 
 
@@ -46,6 +46,26 @@ export class BacklogRepository {
         return `${this.config.apiEndpoint}/item/${itemId}`;
     }
 
+    private deletePtItemUrl(itemId: number) {
+        return `${this.config.apiEndpoint}/item/${itemId}`;
+    }
+
+    private postPtTaskUrl() {
+        return `${this.config.apiEndpoint}/task`;
+    }
+
+    private putPtTaskUrl(taskId: number) {
+        return `${this.config.apiEndpoint}/task/${taskId}`;
+    }
+
+    private postPtCommentUrl() {
+        return `${this.config.apiEndpoint}/comment`;
+    }
+
+    private deletePtCommentUrl(commentId: number) {
+        return `${this.config.apiEndpoint}/comment/${commentId}`;
+    }
+
     public getPtItems(
         currentPreset: PresetType,
         currentUserId: number,
@@ -68,7 +88,6 @@ export class BacklogRepository {
             .catch(errorHandler)
             .subscribe(successHandler);
     }
-
 
     public insertPtItem(
         item: PtItem,
@@ -93,6 +112,75 @@ export class BacklogRepository {
             this.putPtItemUrl(item.id),
             { item: item }
         )
+            .map(res => res.json())
+            .catch(errorHandler)
+            .subscribe(successHandler);
+    }
+
+    public deletePtItem(
+        itemId: number,
+        errorHandler: (error: any) => ErrorObservable,
+        successHandler: () => void
+    ) {
+        this.http.delete(
+            this.deletePtItemUrl(itemId)
+        )
+            .map(res => res.json())
+            .catch(errorHandler)
+            .subscribe(successHandler);
+    }
+
+    public insertPtTask(
+        task: PtTask,
+        ptItemId: number,
+        errorHandler: (error: any) => ErrorObservable,
+        successHandler: (nextTask: PtTask) => void
+    ) {
+        this.http.post(
+            this.postPtTaskUrl(),
+            { task: task, itemId: ptItemId }
+        )
+            .map(res => res.json())
+            .catch(errorHandler)
+            .subscribe(successHandler);
+    }
+
+    public updatePtTask(
+        task: PtTask,
+        ptItemId: number,
+        errorHandler: (error: any) => ErrorObservable,
+        successHandler: (updatedTask: PtTask) => void
+    ) {
+        this.http.put(
+            this.putPtTaskUrl(task.id),
+            { task: task, itemId: ptItemId }
+        )
+            .map(res => res.json())
+            .catch(errorHandler)
+            .subscribe(successHandler);
+    }
+
+    public insertPtComment(
+        comment: PtComment,
+        ptItemId: number,
+        errorHandler: (error: any) => ErrorObservable,
+        successHandler: (nextComment: PtComment) => void
+    ) {
+        this.http.post(
+            this.postPtCommentUrl(),
+            { comment: comment, itemId: ptItemId }
+        )
+            .map(res => res.json())
+            .catch(errorHandler)
+            .subscribe(successHandler);
+    }
+
+    public deletePtComment(
+        ptCommentId: number,
+        errorHandler: (error: any) => ErrorObservable,
+        successHandler: () => void
+    ) {
+        this.http.delete(this.deletePtCommentUrl(ptCommentId))
             .map(res => res.json())
             .catch(errorHandler)
             .subscribe(successHandler);
