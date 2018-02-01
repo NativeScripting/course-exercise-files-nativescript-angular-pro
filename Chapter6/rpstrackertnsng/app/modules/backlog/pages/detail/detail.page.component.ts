@@ -3,9 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 
+import * as dialogs from 'ui/dialogs';
+
 import { PtItem, PtUser } from '../../../../core/models/domain';
 import { BacklogService } from '../../services/backlog.service';
-import { PtUserService } from '../../../../core/services';
+import { PtUserService, NavigationService } from '../../../../core/services';
 import { Store } from '../../../../core/state/app-store';
 import { PtModalService } from '../../../../shared/modals/pt-modal.service';
 import { TextInputModalComponent } from '../../../../shared/modals/text-input/text-input.modal.component';
@@ -30,11 +32,31 @@ export class DetailPageComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private backlogService: BacklogService,
         private ptUserService: PtUserService,
+        private navigationService: NavigationService,
         private store: Store
     ) { }
 
     public ngOnInit() {
         this.backlogService.getItemFromCacheOrServer(parseInt(this.activatedRoute.snapshot.params['id']));
+    }
+
+    public onDeleteTap() {
+        const options: dialogs.ConfirmOptions = {
+            title: 'Delete Item',
+            message: 'Are you sure you want to delete this item?',
+            okButtonText: 'Yes',
+            cancelButtonText: 'Cancel'
+        };
+        dialogs.confirm(options)
+            .then((result: boolean) => {
+                // result can be true/false/undefined
+                if (result) {
+                    this.backlogService.deletePtItem(this.store.value.currentSelectedItem);
+                    setTimeout(() => {
+                        this.navigationService.backToPreviousPage();
+                    }, 100);
+                }
+            });
     }
 
     public onScreenSelected(screen: DetailScreenType) {
@@ -62,7 +84,7 @@ export class DetailPageComponent implements OnInit {
     }
 
     public onNavBackTap() {
-        // TODO: navigate back to previous page
+        this.navigationService.backToPreviousPage();
     }
 
 }
