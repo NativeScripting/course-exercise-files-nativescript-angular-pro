@@ -1,0 +1,51 @@
+<ActionBar title="Item">
+    <NavigationButton text="Back" android.systemIcon="ic_menu_back" (tap)="onNavBackTap()"></NavigationButton>
+
+    <ActionItem (tap)="onDeleteTap()" ios.systemIcon="16" ios.position="right" text="delete" android.systemIcon="ic_menu_delete"
+        android.position="actionBar"></ActionItem>
+</ActionBar>
+
+<GridLayout rows="auto, *" style="height: 100%">
+
+    <GridLayout slide-out row="0" rows="auto, *" style="height: 100%">
+        <GridLayout class="pt-item-detail-header" rows="*, 40">
+
+            <GridLayout row="0" columns="auto, *" class="pt-item-detail-header-title-row">
+                <Image width="50" height="50" class="pt-item-detail-avatar" [src]="(currentSelectedItem$ | async)?.assignee.avatar" col="0"></Image>
+                <Label [text]="(currentSelectedItem$ | async)?.title" class="pt-item-detail-header-title" col="1"></Label>
+            </GridLayout>
+
+            <StackLayout row="1">
+                <pt-detail-section-selector [selectedScreen]="selectedDetailsScreen" (screenSelected)="onScreenSelected($event)"></pt-detail-section-selector>
+            </StackLayout>
+        </GridLayout>
+
+
+        <GridLayout [ngSwitch]="selectedDetailsScreen" row="1">
+            <ng-template [ngSwitchCase]="'details'">
+                <pt-item-details [item]="currentSelectedItem$ | async" [users$]="users$" (itemSaved)="onItemSaved($event)" (usersRequested)="onUsersRequested($event)"></pt-item-details>
+            </ng-template>
+            <ng-template [ngSwitchCase]="'tasks'">
+                <pt-item-tasks [item]="currentSelectedItem$ | async" (addNewTask)="onAddNewTask($event)" (updateTask)="onUpdateTask($event)"></pt-item-tasks>
+            </ng-template>
+            <ng-template [ngSwitchCase]="'chitchat'">
+                <pt-item-chitchat [item]="currentSelectedItem$ | async" [currentUser]="currentUser$ | async" (addNewComment)="onAddNewComment($event)"></pt-item-chitchat>
+            </ng-template>
+        </GridLayout>
+    </GridLayout>
+
+    <GridLayout slide-in rows="60, auto" row="2" style="background-color:azure;">
+        <FlexboxLayout row="0" class="modal-actions-container">
+            <Image src="res://iconcloseblack" (tap)="onCancelButtonTap($event)" class="modal-close-img"></Image>
+
+            <Button (tap)="onOkButtonTap($event)" text="Done" class="btn-modal"></Button>
+        </FlexboxLayout>
+
+        <StackLayout row="1" style="padding: 10;">
+            <Image src="res://rpslogo" height="40"></Image>
+            <Button text="archive for a bit" style="color: red; border-width: 2; border-color: gray; margin:10;"></Button>
+            <Button text="delete permanently" style="color: red; border-width: 2; border-color: red;margin:10;"></Button>
+        </StackLayout>
+    </GridLayout>
+
+</GridLayout>
