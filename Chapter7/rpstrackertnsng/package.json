@@ -29,6 +29,7 @@
     "nativescript-pro-ui": "^3.3.0",
     "nativescript-pulltorefresh": "^2.0.3",
     "nativescript-theme-core": "~1.0.2",
+    "nativescript-unit-test-runner": "^0.3.4",
     "reflect-metadata": "~0.1.8",
     "rxjs": "~5.4.2",
     "tns-core-modules": "~3.3.0",
@@ -36,16 +37,21 @@
     "zone.js": "~0.8.2"
   },
   "devDependencies": {
+    "@types/jasmine": "^2.8.6",
     "@types/lodash": "4.14.68",
     "@types/node": "~6.0.60",
     "babel-traverse": "6.26.0",
     "babel-types": "6.26.0",
     "babylon": "6.18.0",
     "codelyzer": "~4.0.1",
+    "jasmine-core": "^3.0.0",
+    "karma": "^2.0.0",
+    "karma-jasmine": "^1.1.1",
+    "karma-nativescript-launcher": "^0.4.0",
     "lazy": "1.0.11",
     "nativescript-dev-typescript": "~0.5.0",
-    "tslint": "^5.8.0",
     "ts-node": "~3.3.0",
+    "tslint": "^5.8.0",
     "typescript": "~2.5.3"
   }
 }

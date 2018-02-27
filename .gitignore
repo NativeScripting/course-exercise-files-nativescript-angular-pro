@@ -53,3 +53,6 @@ nginx/keys
 #nativescripting course wip projects
 **/*_wip
 **/*_final
+
+#exclude karma conf js files
+!karma.conf.js
