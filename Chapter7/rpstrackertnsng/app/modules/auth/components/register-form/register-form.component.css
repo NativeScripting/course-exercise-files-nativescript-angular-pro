@@ -1,0 +1,91 @@
+.login-field-wrapper {
+    border-width: 1;
+    border-color: #999999;
+    color: #ffffff;
+    height: 40;
+  }
+  
+  .login-field-validation-wrapper {
+    height: 30;
+  }
+  
+  .login-field {
+      padding: 10;
+      margin: 0;
+      color: #ffffff;
+      placeholder-color: #999999;
+  }
+    
+  .login-icon {
+    vertical-align: middle;
+  }
+  
+    .btn-login-wrapper {
+        vertical-align: middle;
+        height: 100%;
+        background-color: #555a97;
+    }
+    
+    .btn-login {
+       vertical-align: middle;
+        background-color: #999999;
+        border-color: #999999;
+        border-width: 1;
+        color: white;
+        font-size: 18;
+        padding: 10;
+        margin-top:20;
+        margin-bottom:30;
+    }
+  
+    .btn-outline {
+      background-color: #999999;
+        border-color: #999999;
+    }
+    .btn-primary {
+      background-color: #555a97;
+      border-color: #555a97;
+    }
+  
+    .login-failed {
+      animation-name: shake;
+      animation-duration: 0.5s;
+    }
+    
+    @keyframes shake {
+      8%, 41% {
+        transform: translateX(-10);
+      }
+      25%, 58% {
+        transform: translateX(10);
+      }
+      75% {
+        transform: translateX(-5);
+      }
+      92% {
+        transform: translateX(5);
+      }
+      0%, 100% {
+        transform: translateX(0);
+      }
+    }
+  
+    .ng-valid[required] {
+      border-left-color: #42A948; 
+      border-left-width: 3;
+    }
+    .ng-invalid {
+      border-left-color: #a94442; 
+      border-left-width: 3;
+    }
+    .validation {
+      background-color: #a94442;
+      color: #ffffff;
+      padding-top: 2;
+      padding-bottom: 2;
+      padding-left: 5;
+      padding-right: 5;
+      vertical-align: middle;
+      font-size: 14;
+    }
+    

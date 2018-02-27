@@ -1,0 +1,10 @@
+<GridLayout rows="50, *, auto" class="register-page-wrapper">
+    <Label class="title" row="0" [text]="'modules.auth.pages.auth.register' | translate"></Label>
+    <StackLayout row="1">
+        <pt-register-form (registerInitiated)="onRegister($event)"></pt-register-form>
+    </StackLayout>
+    <StackLayout row="2">
+        <Label text="Already have an account?" class="smaller"></Label>
+        <Button [nsRouterLink]="['/auth/login']" [text]="'modules.auth.pages.auth.login' | translate"></Button>
+    </StackLayout>
+</GridLayout>

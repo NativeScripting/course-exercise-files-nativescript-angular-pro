@@ -1,0 +1,29 @@
+<GridLayout rows="70, *" class="pt-item-chitchat-container">
+
+    <GridLayout row="0" columns="60, *, 80" class="pt-comments-add-row">
+        <Image [src]="currentUserAvatar" stretch="aspectFit" class="pt-img-comment-add" col="0"></Image>
+        <TextField #newCommentTextField (tap)="onTextFieldTap($event)" editable="false" hint="Enter new comment..." col="1" class="pt-text-comment-add"></TextField>
+        <Button (tap)="onAddTapped(newCommentTextField, $event)" text="Add" col="2" class="pt-btn-comment-add" [class.enabled]="newCommentText.length > 0"
+            isEnabled="{{ newCommentText.length > 0 }}"></Button>
+    </GridLayout>
+
+    <ScrollView row="1" class="pt-comments-scroll">
+        <StackLayout class="pt-comments-list-container">
+            <StackLayout *ngFor="let comment of comments" [height]="commentHeight(comment.title)">
+                <GridLayout columns="40, *" class="pt-comment-wrapper">
+
+                    <Image [src]="comment.user.avatar" width="40" height="40" stretch="aspectFit" class="img-comment-avatar" col="0"></Image>
+
+
+                    <GridLayout col="1" rows="20, *" columns="*, 150" class="comment-text-wrapper">
+                        <Label col="0" row="0" [text]="comment.user.fullName" class="comment-name"></Label>
+                        <Label col="1" row="0" [text]="comment.dateCreated | date" class="comment-date"></Label>
+
+                        <TextView colSpan="2" row="1" [text]="comment.title" editable="false" class="comment-text"></TextView>
+                    </GridLayout>
+                </GridLayout>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+
+</GridLayout>
