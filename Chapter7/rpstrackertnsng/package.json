@@ -12,6 +12,11 @@
       "version": "3.3.0"
     }
   },
+  "scripts": {
+    "lint": "tslint 'app/**/*.ts' -t verbose",
+    "cisetup": "npm i && tns platform add android && tns build android",
+    "citest": "tns test android --justlaunch"
+  },
   "dependencies": {
     "@angular/animations": "~4.4.1",
     "@angular/common": "~4.4.1",
