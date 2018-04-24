@@ -1,0 +1,10 @@
+<GridLayout rows="50, *, auto" class="login-page-wrapper">
+    <Label class="title" row="0" [text]="'Login'"></Label>
+    <StackLayout row="1">
+        <pt-login-form (loginInitiated)="onLogin($event)"></pt-login-form>
+    </StackLayout>
+    <StackLayout row="2">
+        <Label text="Need an account?" class="smaller"></Label>
+        <Button [nsRouterLink]="['/auth/register']" [text]="'Register'"></Button>
+    </StackLayout>
+</GridLayout>

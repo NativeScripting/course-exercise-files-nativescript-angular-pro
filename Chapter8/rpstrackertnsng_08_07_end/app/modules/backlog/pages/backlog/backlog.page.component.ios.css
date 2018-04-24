@@ -1,0 +1,18 @@
+.drawer-content-in {
+    animation-name: openDrawer;
+    animation-direction: normal;
+    animation-duration: 250ms;
+    animation-fill-mode: forwards;
+}
+
+.drawer-content-out {
+    animation-name: openDrawer;
+    animation-direction: reverse;
+    animation-duration: 250ms;
+    animation-fill-mode: forwards;
+}
+
+@keyframes openDrawer {
+    0% { opacity: 1; }
+    100% { opacity: 0.3; }
+}

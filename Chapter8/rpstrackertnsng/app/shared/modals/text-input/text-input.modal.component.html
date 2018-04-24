@@ -1,0 +1,16 @@
+<ActionBar [title]="modalTitle">
+
+</ActionBar>
+
+<GridLayout rows="60, *" verticalAlignment="top" height="100%">
+
+    <FlexboxLayout row="0" class="modal-actions-container">
+
+        <Image src="res://iconcloseblack" (tap)="onCancelButtonTap()" class="modal-close-img"></Image>
+
+        <Button (tap)="onOkButtonTap()" [text]="okText" class="btn-modal"></Button>
+
+    </FlexboxLayout>
+
+    <TextView #theTextView row="1" [(ngModel)]="theText"></TextView>
+</GridLayout>

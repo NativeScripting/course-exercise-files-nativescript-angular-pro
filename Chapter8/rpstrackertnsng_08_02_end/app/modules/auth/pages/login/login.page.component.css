@@ -1,0 +1,25 @@
+.login-page-wrapper {
+    animation-name: fadeIn;
+    animation-duration: 500ms;
+}
+
+.title {
+    text-align: center;
+    color: #ffffff;
+    height: 30;
+    font-size: 20;
+    font-weight: bold;
+    margin: 0;
+    margin-bottom: 10;
+}
+
+.smaller {
+    font-size: 12;
+    color: #ffffff;
+    text-align: center;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}

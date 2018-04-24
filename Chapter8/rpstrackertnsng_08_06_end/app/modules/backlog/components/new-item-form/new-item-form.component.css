@@ -1,0 +1,12 @@
+.new-item-actions-container {
+    background-color: #efefef;
+    justify-content: space-between;
+}
+
+.modal-close-img {
+    margin-left: 10;
+}
+
+.btn-save {
+    color: #333333;
+}

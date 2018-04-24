@@ -1,0 +1,49 @@
+.pt-item-tasks-container {
+    background-color: #ffffff;
+}
+
+.pt-tasks-add-row {
+    background-color: #ffffff;
+    border-top-width: 0.5;
+    border-top-color: #e4e4e6;
+    border-bottom-width: 0.5;
+    border-bottom-color: #e4e4e6;
+    margin-top: 10;
+}
+
+.pt-text-task-add {
+    margin-left: 10;
+    border-width: 0 0 1 0; 
+    border-color: transparent;
+}
+
+.pt-btn-task-add {
+    background-color: #e4e4e6;
+}
+.pt-btn-task-add.enabled {
+    background-color: #555c95;
+}
+
+.pt-tasks-scroll {
+    background-color: #f9f9f9;
+}
+
+.pt-tasks-list-container {
+    padding: 5;
+    margin-left: 5;
+}
+
+.pt-task-wrapper {
+    height: 40;
+}
+
+.task-checkbox {
+    width: 30;
+    height: 30;
+}
+
+.task-title {
+    margin-left: 10;
+    border-width: 0 0 1 0; 
+    border-color: transparent;
+}

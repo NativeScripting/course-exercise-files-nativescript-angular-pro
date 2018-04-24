@@ -1,0 +1,15 @@
+{
+    "app": {
+        "title": "Mi aplicación"
+    },
+    "modules": {
+        "auth": {
+            "pages": {
+                "auth": {
+                    "login": "Incenar",
+                    "register": "Registar"
+                }
+            }
+        }
+    }
+}

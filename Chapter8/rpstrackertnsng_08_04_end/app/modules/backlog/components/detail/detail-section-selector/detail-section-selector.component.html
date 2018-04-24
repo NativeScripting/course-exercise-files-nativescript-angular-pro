@@ -1,0 +1,11 @@
+<FlexboxLayout class="selector">
+    <GridLayout class="selector-btn-wrapper" [class.active]="selectedScreen === 'details'">
+        <Button (tap)="onDetailsTap($event)" text="Details" class="selector-btn" [class.active]="selectedScreen === 'details'"></Button>
+    </GridLayout>
+    <GridLayout class="selector-btn-wrapper" [class.active]="selectedScreen === 'tasks'">
+        <Button (tap)="onTasksTap($event)" text="Tasks" class="selector-btn" [class.active]="selectedScreen === 'tasks'"></Button>
+    </GridLayout>
+    <GridLayout class="selector-btn-wrapper" [class.active]="selectedScreen === 'chitchat'">
+        <Button (tap)="onChitchatTap($event)" text="Chitchat" class="selector-btn" [class.active]="selectedScreen === 'chitchat'"></Button>
+    </GridLayout>
+</FlexboxLayout>

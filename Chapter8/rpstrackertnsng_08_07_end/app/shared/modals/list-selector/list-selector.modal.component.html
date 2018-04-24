@@ -1,0 +1,20 @@
+<ActionBar [title]="title" icon="">
+    <!-- https://github.com/NativeScript/NativeScript/issues/1130 -->
+</ActionBar>
+
+<GridLayout rows="60, *" verticalAlignment="top">
+
+    <FlexboxLayout row="0" class="modal-actions-container">
+        <Image src="res://iconcloseblack" (tap)="onCancelButtonTap()" class="modal-close-img"></Image>
+    </FlexboxLayout>
+
+    <ListView row="1" [items]="items" (itemTap)="onItemSelected($event)" class="list-modal-list">
+        <ng-template let-item="item">
+            <StackLayout orientation="horizontal" class="list-modal-item-wrapper">
+                <Image width="50" height="50" [src]="item.img"></Image>
+                <Label [text]="item.value" class="list-modal-label"></Label>
+            </StackLayout>
+        </ng-template>
+    </ListView>
+
+</GridLayout>
