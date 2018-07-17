@@ -1,0 +1,31 @@
+<GridLayout rows="60, *">
+
+    <FlexboxLayout row="0" class="new-item-actions-container">
+        <Image src="res://iconcloseblack" (tap)="onCancelTap()" class="modal-close-img"></Image>
+        <Button [text]="btnOkText" (tap)="onSaveTap()" class="btn-save"></Button>
+    </FlexboxLayout>
+
+    <RadDataForm #itemDetailsDataForm [source]="newItemForm" commitMode="Manual" (editorUpdate)="onEditorUpdate($event)" row="1">
+
+        <TKEntityProperty tkDataFormProperty name="title" displayName="Title" index="1" hintText="Title">
+            <TKPropertyEditor tkEntityPropertyEditor type="MultilineText">
+                <TKPropertyEditorStyle tkPropertyEditorStyle labelTextColor="#4b5833" labelPosition="top"></TKPropertyEditorStyle>
+            </TKPropertyEditor>
+            <TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Title can't be empty."></TKNonEmptyValidator>
+        </TKEntityProperty>
+
+        <TKEntityProperty tkDataFormProperty name="description" displayName="Description" index="2" required="true" hintText="description">
+            <TKPropertyEditor tkEntityPropertyEditor type="MultilineText">
+                <TKPropertyEditorStyle tkPropertyEditorStyle labelTextColor="#4b5833" labelPosition="top"></TKPropertyEditorStyle>
+            </TKPropertyEditor>
+        </TKEntityProperty>
+
+        <TKEntityProperty tkDataFormProperty name="typeStr" [displayName]="itemTypeEditorDisplayName" index="3" [imageResource]="itemTypeImage"
+            [valuesProvider]="itemTypesProvider">
+            <TKPropertyEditor tkEntityPropertyEditor type="Picker">
+                <TKPropertyEditorStyle tkPropertyEditorStyle labelTextColor="#4b5833"></TKPropertyEditorStyle>
+            </TKPropertyEditor>
+        </TKEntityProperty>
+
+    </RadDataForm>
+</GridLayout>
