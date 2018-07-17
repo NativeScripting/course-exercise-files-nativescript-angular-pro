@@ -1,0 +1,18 @@
+<GridLayout rows="70, *" class="pt-item-tasks-container">
+    <GridLayout row="0" columns="*, 80" class="pt-tasks-add-row">
+        <TextField #newTaskTextField [(ngModel)]="newTaskTitle" hint="Enter new task..." col="0" class="pt-text-task-add"></TextField>
+        <Button (tap)="onAddTapped(newTaskTextField, $event)" text="Add" col="1" class="pt-btn-task-add" [class.enabled]="newTaskTitle.length > 0"
+            isEnabled="{{ newTaskTitle.length > 0 }}"></Button>
+    </GridLayout>
+
+    <ScrollView row="1" class="pt-tasks-scroll">
+        <StackLayout class="pt-tasks-list-container">
+            <GridLayout *ngFor="let task of tasks" columns="30, *" class="pt-task-wrapper">
+                <Image (tap)="toggleTapped(task)" [src]="task.completed ? 'res://checkboxchecked' : 'res://checkboxunchecked'" class="task-checkbox"
+                    col="0"></Image>
+                <TextField [ngModel]="task.title" (ngModelChange)="taskTitleChange(task, $event)" (blur)="taskBlurred(task, $event)" col="1"
+                    class="task-title"></TextField>
+            </GridLayout>
+        </StackLayout>
+    </ScrollView>
+</GridLayout>
