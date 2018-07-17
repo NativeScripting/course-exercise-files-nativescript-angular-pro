@@ -1,0 +1,15 @@
+{
+    "app": {
+        "title": "My Application"
+    },
+    "modules": {
+        "auth": {
+            "pages": {
+                "auth": {
+                    "login": "Login",
+                    "register": "Register"
+                }
+            }
+        }
+    }
+}
