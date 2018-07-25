@@ -1,0 +1,18 @@
+.pt-item-detail-header {
+    background-color: #eeeeee;
+    color: #666666;
+    height: 100;
+}
+
+.pt-item-detail-header.bold {
+    font-weight: bold;
+}
+
+.pt-item-detail-header-title-row {
+    width: 100%;
+    padding: 5;
+    vertical-align: middle;
+}
+.pt-item-detail-avatar {
+    margin-right: 10;
+}

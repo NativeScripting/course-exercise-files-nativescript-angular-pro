@@ -1,0 +1,16 @@
+.modal-actions-container {
+    background-color: #efefef;
+    justify-content: space-between;
+}
+
+.modal-close-img {
+    margin-left: 10;
+}
+
+.list-modal-item-wrapper {
+    margin: 5;
+}
+
+.list-modal-label {
+    margin-left: 5;
+}
